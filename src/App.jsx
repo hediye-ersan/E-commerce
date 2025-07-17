@@ -1,18 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
 import './reset.css'
+import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import { Switch } from 'react-router-dom/cjs/react-router-dom';
+import NavBar from './components/Navbar.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1 class="text-3xl font-bold underline text-blue-800">
-    Hello world!
-  </h1>
+      <Switch>
+        <Route>
+          <NavBar/>
+        </Route>
+      </Switch>
+
     </>
   )
 }
-
 export default App
