@@ -82,7 +82,7 @@ export default function NewArrivals() {
 
   return (
     <div className="py-10 px-4 md:px-24 text-center">
-      <h2 className="font-black text-4xl md:text-6xl py-4 md:py-8">NEW ARRIVALS</h2>
+      <h2 className="font-black text-4xl md:text-6xl py-4 ">NEW ARRIVALS</h2>
 
       <div className="grid grid-cols-2 lg:grid-cols-5 justify-items-center">
         {visibleProducts.map((product) => (

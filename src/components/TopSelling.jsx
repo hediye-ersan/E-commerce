@@ -81,7 +81,7 @@ export default function NewArrivals() {
   const visibleProducts = isMobile ? products.slice(0, 2) : products
 
   return (
-    <div className="py-10 px-4 md:px-24 text-center">
+    <div className="px-4 md:px-24 text-center">
       <h2 className="font-black text-4xl md:text-6xl py-4 md:py-8">TOP SELLING</h2>
 
       <div className="grid grid-cols-2 lg:grid-cols-5 justify-items-center">
