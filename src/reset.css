@@ -10,7 +10,7 @@
 /* 2. Remove default margin */
 * {
   margin: 0;
-  border: solid 1px pink
+/*  border: solid 1px pink*/
 }
 
 /* 3. Enable keyword animations */
