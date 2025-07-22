@@ -6,8 +6,9 @@ function NavBar() {
        const navigationItems = ['Shop', 'On Sale', 'New Arrivals', 'Brands'];
     return (
     <>
+    <div>
       {/* Top Banner */}
-      <h4 className="text-sm text-center text-white bg-black p-2">
+      <h4 className="text-sm md:text-lg text-center text-white bg-black p-2">
         Sign up and get 20% off to your first order. Sign Up Now
       </h4>
 
@@ -15,7 +16,7 @@ function NavBar() {
       <div className="flex items-center justify-between lg:hidden">
         <div className="flex items-center justify-start gap-2 p-4">
           <AlignJustify />
-          <h2 className="font-bold text-2xl">
+          <h2 className="font-black text-4xl">
             SHOP.CO
           </h2>
         </div>
@@ -27,16 +28,16 @@ function NavBar() {
       </div>
 
       {/* Desktop Navbar */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-4">
+      <div className="hidden lg:flex items-center justify-between px-24 py-4">
         {/* Logo + Menu */}
         <div className="flex items-center gap-12">
-          <h2 className="font-bold text-2xl">SHOP.CO</h2>
+          <h2 className="font-black text-4xl">SHOP.CO</h2>
           <nav className="flex items-center gap-8 px-4 text-lg">
             {navigationItems.map((item) => (
               <Link
                 key={item}
                 to={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-gray-700 hover:text-black font-medium"
+                className="text-gray-700 hover:text-black font-medium text-2xl"
               >
                 {item}
               </Link>
@@ -57,10 +58,11 @@ function NavBar() {
         </div>
 
         {/* Right Icons */}
-        <div className="flex items-center gap-4 px-4">
+        <div className="flex items-center gap-4">
           <ShoppingCart className="h-7 w-7 cursor-pointer" />
           <CircleUserRound className="h-7 w-7 cursor-pointer" />
         </div>
+      </div>
       </div>
     </>
   )
