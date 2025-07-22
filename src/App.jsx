@@ -3,11 +3,7 @@ import { useState } from 'react';
 import './reset.css'
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import { Switch } from 'react-router-dom/cjs/react-router-dom';
-import NavBar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
-import Header from './components/Header.jsx';
-import NewArrivals from './components/NewArrivals.jsx';
-import TopSelling from './components/TopSelling.jsx';
+import HomePage from './pages/HomePage.jsx';
 
 
 function App() {
@@ -18,11 +14,7 @@ function App() {
     <>
       <Switch>
         <Route>
-          <NavBar />
-          <Header/>
-          <NewArrivals />
-          <TopSelling />
-          <Footer />
+          <HomePage/>
         </Route>
       </Switch>
 
