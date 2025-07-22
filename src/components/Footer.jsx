@@ -23,10 +23,10 @@ function Footer() {
     };
 
     return (
-        <footer className="p-4 md:p-8">
+        <footer className="p-4 md:p-24">
             {/* Üst Banner */}
             <div className="bg-black rounded-2xl mb-8 md:flex md:items-center md:justify-between p-6 md:p-12">
-                <h1 className="text-white font-bold text-4xl p-6">
+                <h1 className="text-white font-bold text-4xl p-6 md:p-8">
                     STAY UPTO DATE ABOUT OUR LATEST OFFERS
                 </h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 pt-0 md:p-0 md:w-2xl">
@@ -35,26 +35,26 @@ function Footer() {
                         id="email"
                         name="email"
                         placeholder="📮 Enter your email address"
-                        className="w-full px-6 py-2 text-center bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                        className="w-full px-6 py-2 md:py-4 text-center bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 "
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <button
                         type="submit"
-                        className="w-full px-6 py-2 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition"
+                        className="w-full px-6 py-2 md:py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition"
                     >
                         Subscribe to Newsletter
                     </button>
                 </form>
             </div>
-            <div className='md:flex md:justify-between md:pb-6'>
+            <div className='md:flex md:justify-between md:pb-12'>
                 {/* Ana İçerik */}
                 <div className="flex flex-col gap-6 ">
                     {/* Sol - Logo ve Açıklama */}
                     <div className="max-w-md">
-                        <h2 className="text-black font-black text-2xl pt-6 pb-2">SHOP.CO</h2>
-                        <p className="text-gray-600">
+                        <h2 className="text-black font-black text-2xl md:text-4xl pt-6 pb-2 md:py-6">SHOP.CO</h2>
+                        <p className="text-gray-600 md:text-lg">
                             We have clothes that suits your style and which you’re proud to wear. From women to men.
                         </p>
                     </div>
@@ -77,10 +77,10 @@ function Footer() {
                 </div>
 
                 {/* Alt - Link Grupları */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-8 py-6 md:gap-24 md:justify-around">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-8 py-6 md:py-12 md:gap-24 md:justify-around">
                     <div>
-                        <h4 className="text-lg font-bold mb-2">COMPANY</h4>
-                        <ul className="text-gray-500">
+                        <h4 className="text-lg md:text-xl font-bold mb-2">COMPANY</h4>
+                        <ul className="text-gray-500 md:text-lg ">
                             <li>About</li>
                             <li>Feature</li>
                             <li>Works</li>
@@ -88,8 +88,8 @@ function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h4 className="text-lg font-bold mb-2">HELP</h4>
-                        <ul className="text-gray-500 ">
+                        <h4 className="text-lg md:text-xl font-bold mb-2">HELP</h4>
+                        <ul className="text-gray-500 md:text-lg">
                             <li>Customer Support</li>
                             <li>Delivery Details</li>
                             <li>Terms & Conditions</li>
@@ -97,8 +97,8 @@ function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h4 className="text-lg font-bold mb-2">FAQ</h4>
-                        <ul className="text-gray-500 ">
+                        <h4 className="text-lg md:text-xl font-bold mb-2">FAQ</h4>
+                        <ul className="text-gray-500 md:text-lg">
                             <li>Account</li>
                             <li>Manage Deliveries</li>
                             <li>Orders</li>
@@ -106,8 +106,8 @@ function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h4 className="text-lg font-bold mb-2">RESOURCES</h4>
-                        <ul className="text-gray-500 ">
+                        <h4 className="text-lg md:text-xl font-bold mb-2">RESOURCES</h4>
+                        <ul className="text-gray-500 md:text-lg">
                             <li>Free eBook</li>
                             <li>Development Tutorial</li>
                             <li>How to - Blog</li>
@@ -116,9 +116,9 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className='md:flex md:justify-between md:items-center'>
-                <p className='text-gray-500 text-center py-4 border-t-2 border-gray-500'>Shop.co © 2000-2023, All Rights Reserved</p>
-                <img src="/payy.svg" alt="Payy Logo" className="w-full h-full px-12 md:w-1/4 md:px-4 md:py-4" />
+            <div className='md:flex md:justify-between md:items-center md:border-t-4 md:border-gray-500'>
+                <p className='text-gray-500 text-center py-4 border-t-2 border-gray-500 md:border-none md:text-lg'>Shop.co © 2000-2023, All Rights Reserved</p>
+                <img src="/payy.svg" alt="Payy Logo" className="w-full h-full px-12 md:w-1/4 md:px-4 md:py-6" />
             </div>
         </footer>
 
