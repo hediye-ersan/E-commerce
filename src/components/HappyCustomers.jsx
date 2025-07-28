@@ -35,6 +35,16 @@ function StarIcons() {
   )
 }
 
+function VerifiedIcon() {
+  return (
+    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500 ml-2 align-middle">
+      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </span>
+  )
+}
+
 function HappyCustomers(){
     
 }
