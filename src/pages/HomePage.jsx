@@ -5,6 +5,7 @@ import Header from '../components/Header.jsx';
 import NewArrivals from '../components/NewArrivals.jsx';
 import TopSelling from '../components/TopSelling.jsx';
 import BrowseBy from '../components/BrowseBy.jsx';
+import HappyCustomers from '../components/HappyCustomers.jsx';
 
 function HomePage() {
 
@@ -17,6 +18,7 @@ function HomePage() {
             <NewArrivals />
             <TopSelling />
             <BrowseBy />
+            <HappyCustomers />
             <Footer />
 
         </>
