@@ -66,6 +66,48 @@ function HappyCustomers(){
     
       const handlePrev = () => setIndex((i) => Math.max(i - 1, 0))
       const handleNext = () => setIndex((i) => Math.min(i + 1, maxIndex))
+
+       return (
+    <div className="w-full rounded-3xl p-4 py-10 md:p-10 md:px-24 mx-auto">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="font-black text-4xl md:text-6xl leading-tight uppercase">OUR HAPPY CUSTOMERS</h2>
+        <div className="flex gap-4">
+          <button
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+            className="text-3xl font-bold text-black disabled:opacity-30"
+            aria-label="Previous"
+          >
+            &#60;
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={currentIndex >= maxIndex}
+            className="text-3xl font-bold text-black disabled:opacity-30"
+            aria-label="Next"
+          >
+            &#62;
+          </button>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-8">
+        {visibleReviews.map((review, idx) => (
+          <div
+            key={review.name}
+            className="bg-white bg-opacity-60 rounded-2xl border border-gray-200 p-6 shadow-sm flex flex-col"
+            style={{ minHeight: 220 }}
+          >
+            <StarIcons />
+            <div className="flex items-center mb-2">
+              <span className="font-bold text-xl">{review.name}</span>
+              <VerifiedIcon />
+            </div>
+            <p className="text-gray-600 text-lg">{review.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
     
 }
 export default HappyCustomers;
