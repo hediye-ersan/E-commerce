@@ -46,6 +46,26 @@ function VerifiedIcon() {
 }
 
 function HappyCustomers(){
+     const [index, setIndex] = useState(0)
+      const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024
+      const visibleCount = isDesktop ? 3 : 1
+    
+      // Responsive: useEffect ile resize'da tekrar render için state kullanılabilir
+      const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 0)
+      React.useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth)
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+      }, [])
+      const isNowDesktop = windowWidth >= 1024
+      const showCount = isNowDesktop ? 3 : 1
+    
+      const maxIndex = reviews.length - showCount
+      const currentIndex = Math.min(index, maxIndex < 0 ? 0 : maxIndex)
+      const visibleReviews = reviews.slice(currentIndex, currentIndex + showCount)
+    
+      const handlePrev = () => setIndex((i) => Math.max(i - 1, 0))
+      const handleNext = () => setIndex((i) => Math.min(i + 1, maxIndex))
     
 }
 export default HappyCustomers;
