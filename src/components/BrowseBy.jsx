@@ -9,7 +9,7 @@ const styles = [
 
 export default function BrowseBy() {
   return (
-    <div className="flex items-center justify-center min-h-content px-2 md:px-10 py-10">
+    <div className="flex items-center justify-center min-h-content px-2 md:px-10 py-10 md:px-24">
       <div className="bg-stone-300 rounded-3xl p-4 md:p-10 w-full max-w-full">
         <h2 className="font-black text-4xl md:text-6xl text-center py-6 uppercase leading-tight">
           BROWSE BY DRESS STYLE
