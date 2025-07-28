@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X, ChevronRight, ChevronUp, Check } from "lucide-react";
+import Button2 from "./ui/Button2"; // Assuming you have a Button2 component
 
 export default function FilterPanel({ onClose }) {
   const [priceRange, setPriceRange] = useState([50, 200]);
@@ -98,7 +99,7 @@ export default function FilterPanel({ onClose }) {
                 <button
                   key={color.name}
                   onClick={() => setSelectedColor(color.name)}
-                  className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? "border-black" : "border-transparent"}`}
+                  className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? "border-black" : "border-gray-200"}`}
                   style={{ backgroundColor: color.value }}
                 >
                   {selectedColor === color.name && <Check className={`h-4 w-4 ${["white", "yellow"].includes(color.name) ? "text-black" : "text-white"}`} />}
@@ -149,7 +150,7 @@ export default function FilterPanel({ onClose }) {
       </div>
 
       <div className="p-4">
-        <button className="w-full bg-black text-white py-3 rounded-full">Apply Filter</button>
+        <Button2>Apply Filter</Button2>
       </div>
     </div>
   );

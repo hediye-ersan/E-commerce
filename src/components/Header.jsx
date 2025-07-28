@@ -1,3 +1,5 @@
+import Button2 from "./ui/Button2";
+
 function Header() {
 
     return (
@@ -7,7 +9,7 @@ function Header() {
                     <div>
                         <h1 className='font-black text-4xl md:text-6xl py-4 md:py-8'>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
                         <p className='pb-4 md:pb-8 md:text-xl'>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
-                        <button className='bg-black text-white w-full md:w-auto md:px-12 px-6 py-4 md:py-6 rounded-full mt-4 hover:bg-gray-800 transition'>Shop Now</button>
+                        <Button2>Shop Now</Button2>
                     </div>
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-3 py-4 md:py-8">
                         {/* 1. Öğe */}
