@@ -55,9 +55,9 @@ function NavBar() {
                 </button>
                 {isShopOpen && (
                   <div className="pl-4 font-semibold space-y-1">
-                    <Link to="/shop/men">👕 Men</Link>
+                    <Link to="/category/men">👕 Men</Link>
                     <br />
-                    <Link to="/shop/women">👚 Women</Link>
+                    <Link to="/category/women">👚 Women</Link>
                   </div>
                 )}
               </div>
@@ -90,13 +90,13 @@ function NavBar() {
               {isShopOpen && (
                 <div className="absolute top-full left-0 bg-white shadow-md mt-2 rounded-md w-40 py-2 z-50">
                   <Link
-                    to="/shop/men"
+                    to="/category/men"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Men
                   </Link>
                   <Link
-                    to="/shop/women"
+                    to="/category/women"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Women
