@@ -12,7 +12,7 @@ function Category() {
   const [showFilter, setShowFilter] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative p-4 md:p-24">
       {/* Filter Panel */}
       {showFilter && (
         <div className="fixed md:hidden inset-0 z-50 bg-white overflow-y-auto transition-transform duration-300">
@@ -20,7 +20,7 @@ function Category() {
         </div>
       )}
 
-      <div className="p-6">
+      <div>
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 flex items-center gap-1">
           <Link to="/" className="hover:underline">Home</Link>
@@ -47,7 +47,7 @@ function Category() {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex justify-between items-center pt-4">
           <button className="px-4 py-2 border rounded">Previous</button>
           <div className="flex gap-2">
             <button className="w-8 h-8 border rounded bg-black text-white">1</button>
