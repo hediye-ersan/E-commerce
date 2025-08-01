@@ -81,14 +81,15 @@ export default function NewArrivals() {
   const visibleProducts = isMobile ? products.slice(0, 2) : products
 
   return (
-    <div className="px-4 md:px-24 text-center">
+    <div className="w-full flex justify-center">
+    <div className="px-4 md:px-24 text-center max-w-[1500px] mx-auto">
       <h2 className="font-black text-4xl md:text-6xl py-4 md:py-8">TOP SELLING</h2>
 
-      <div className="grid grid-cols-2 lg:grid-cols-5 justify-items-center">
+      <div className="grid grid-cols-2 lg:grid-cols-5 justify-items-center gap-2">
         {visibleProducts.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-2xl shadow p-4 w-[150px]  md:w-[250px] text-left"
+            className="bg-white rounded-2xl shadow p-4 text-left"
           >
             <img
               src={product.image}
@@ -118,6 +119,7 @@ export default function NewArrivals() {
       <div className="py-6 md:py-10">
         <Button className="w-full md:w-xl md:py-4">View All</Button>
       </div>
+    </div>
     </div>
   )
 }
