@@ -34,7 +34,7 @@ export default function FilterPanel({ onClose }) {
   };
 
   return (
-    <div className="w-full min-h-screen bg-white flex flex-col px-10">
+    <div className="w-full min-h-screen bg-white flex flex-col px-10 md:px-0 md:border-gray-200 md:border md: rounded-3xl">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200">
         <h2 className="text-xl font-semibold text-gray-900">Filters</h2>
