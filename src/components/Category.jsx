@@ -11,16 +11,23 @@ function Category() {
 
   const [showFilter, setShowFilter] = useState(false);
 
+
   return (
-    <div className="relative p-4 md:p-24">
-      {/* Filter Panel */}
+    <div className="relative p-4 md:p-24 flex md:flex-row flex-col gap-4">
+      {/* Filtre paneli genişletildi */}
+      <div className="hidden md:block md:w-auto">
+        <Filters onClose={() => { }} />
+      </div>
+
+      {/* Mobil filtre paneli (tam ekran) */}
       {showFilter && (
         <div className="fixed md:hidden inset-0 z-50 bg-white overflow-y-auto transition-transform duration-300">
           <Filters onClose={() => setShowFilter(false)} />
         </div>
       )}
 
-      <div>
+      {/* Ürünler ve diğer içerik */}
+      <div className="flex-1">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 flex items-center gap-1">
           <Link to="/" className="hover:underline">Home</Link>
@@ -30,7 +37,7 @@ function Category() {
           <span className="capitalize">{category}</span>
         </div>
 
-        {/* Title */}
+        {/* Başlık ve filtre butonu (mobilde görünür) */}
         <div className="flex justify-between items-center mt-4 mb-2">
           <h2 className="text-3xl font-bold">{category}</h2>
           <span className="text-gray-500 hidden md:inline">Showing 1-10 of 100 Products</span>
@@ -39,14 +46,14 @@ function Category() {
           </button>
         </div>
 
-        {/* Products */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {/* Ürünler */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[...Array(8)].map((_, index) => (
             <ProductCard key={index} />
           ))}
         </div>
 
-        {/* Pagination */}
+        {/* Sayfalama */}
         <div className="flex justify-between items-center pt-4">
           <button className="px-4 py-2 border rounded">Previous</button>
           <div className="flex gap-2">
@@ -59,6 +66,8 @@ function Category() {
       </div>
     </div>
   );
+
+
 }
 
 export default Category;
