@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage.jsx';
 import CategoryPage from './pages/CategoryPage.jsx';
 import ProductDetailPage from './pages/ProductDetailPage.jsx'; // Yeni sayfa bileşeni
 import Cart from './pages/Cart.jsx';
+import FavoritesPage from './pages/FavoritesPage.jsx';
 import { CartProvider } from './contexts/CartContext';
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/category/:category" component={CategoryPage} />
         <Route path="/product/:id" component={ProductDetailPage} />
         <Route path="/cart" component={Cart} />
+        <Route path="/favorites" component={FavoritesPage} />
       </Switch>
     </CartProvider>
   )
