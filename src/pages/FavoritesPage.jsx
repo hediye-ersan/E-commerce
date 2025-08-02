@@ -29,12 +29,22 @@ const FavoritesPage = () => {
             inStock: true
         },
         {
+            id: 1,
+            name: "Black Striped T-shirt",
+            price: 180,
+            originalPrice: 242,
+            discount: 20,
+            image: "https://picsum.photos/300/300",
+            rating: 4.5,
+            inStock: true
+        },
+        {
             id: 2,
             name: "Gradient Graphic T-shirt",
             price: 145,
             originalPrice: 180,
             discount: 15,
-            image: "https://picsum.photos/300/301",
+            image: "https://picsum.photos/300/300",
             rating: 4.8,
             inStock: true
         },
@@ -45,7 +55,7 @@ const FavoritesPage = () => {
             price: 145,
             originalPrice: 180,
             discount: 15,
-            image: "https://picsum.photos/300/301",
+            image: "https://picsum.photos/300/300",
             rating: 4.8,
             inStock: true
         },
@@ -56,7 +66,7 @@ const FavoritesPage = () => {
             price: 145,
             originalPrice: 180,
             discount: 15,
-            image: "https://picsum.photos/300/301",
+            image: "https://picsum.photos/300/300",
             rating: 4.8,
             inStock: true
         },
@@ -67,7 +77,27 @@ const FavoritesPage = () => {
             price: 145,
             originalPrice: 180,
             discount: 15,
-            image: "https://picsum.photos/300/301",
+            image: "https://picsum.photos/300/300",
+            rating: 4.8,
+            inStock: true
+        },
+        {
+            id: 2,
+            name: "Gradient Graphic T-shirt",
+            price: 145,
+            originalPrice: 180,
+            discount: 15,
+            image: "https://picsum.photos/300/300",
+            rating: 4.8,
+            inStock: true
+        },
+        {
+            id: 2,
+            name: "Gradient Graphic T-shirt",
+            price: 145,
+            originalPrice: 180,
+            discount: 15,
+            image: "https://picsum.photos/300/300",
             rating: 4.8,
             inStock: true
         },
@@ -77,7 +107,27 @@ const FavoritesPage = () => {
             price: 180,
             originalPrice: 200,
             discount: 10,
-            image: "https://picsum.photos/300/302",
+            image: "https://picsum.photos/300/300",
+            rating: 4.2,
+            inStock: false
+        },
+        {
+            id: 3,
+            name: "Checkered Shirt",
+            price: 180,
+            originalPrice: 200,
+            discount: 10,
+            image: "https://picsum.photos/300/300",
+            rating: 4.2,
+            inStock: false
+        },
+        {
+            id: 3,
+            name: "Checkered Shirt",
+            price: 180,
+            originalPrice: 200,
+            discount: 10,
+            image: "https://picsum.photos/300/300",
             rating: 4.2,
             inStock: false
         },
@@ -87,7 +137,7 @@ const FavoritesPage = () => {
             price: 240,
             originalPrice: 300,
             discount: 20,
-            image: "https://picsum.photos/300/303",
+            image: "https://picsum.photos/300/300",
             rating: 4.6,
             inStock: true
         }
@@ -109,8 +159,8 @@ const FavoritesPage = () => {
         <>
             <style>{scrollbarHideStyles}</style>
             <NavBar />
-            <div className="min-h-screen bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 md:px-24 py-8">
+            <div className="min-h-screen">
+                <div className="px-4 md:px-24 py-8">
                     {/* Breadcrumb */}
                     <div className="text-sm text-gray-600 flex items-center gap-1 mb-6">
                         <Link to="/" className="hover:underline">Home</Link>
@@ -121,16 +171,14 @@ const FavoritesPage = () => {
                     {/* Page Header */}
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                            <h1 className="text-3xl py-2 md:py-4 md:text-4xl font-bold text-gray-900 mb-2">
                                 My Favorites
                             </h1>
                             <p className="text-gray-600">
                                 {favorites.length} items in your favorites
                             </p>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Heart className="text-red-500" size={24} />
-                        </div>
+                       
                     </div>
 
                     {favorites.length === 0 ? (
@@ -158,14 +206,14 @@ const FavoritesPage = () => {
                                     <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
                                         Available Items ({inStockItems.length})
                                     </h2>
-                                    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                                    <div className="flex gap-4 overflow-x-auto py-4 scrollbar-full">
                                         {inStockItems.map((product) => (
                                             <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-all duration-300 flex-shrink-0">
                                                 <div className="relative">
                                                     <img
                                                         src={product.image}
                                                         alt={product.name}
-                                                        className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                                                        className="w-full h-32 sm:h-36 md:h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                                                     />
                                                     <button
                                                         onClick={() => removeFromFavorites(product.id)}
@@ -214,7 +262,7 @@ const FavoritesPage = () => {
                                                         </button>
                                                         <Link
                                                             to={`/product/${product.id}`}
-                                                            className="flex-1 border border-gray-300 text-gray-700 py-1.5 px-2 rounded text-xs hover:bg-gray-50 transition-colors text-center"
+                                                            className="flex-1 content-center border border-gray-300 font-bold text-gray-700 py-1.5 px-2 rounded text-xs hover:bg-gray-50 transition-colors text-center"
                                                         >
                                                             View
                                                         </Link>
@@ -232,7 +280,7 @@ const FavoritesPage = () => {
                                     <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
                                         Out of Stock ({outOfStockItems.length})
                                     </h2>
-                                    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                                    <div className="flex gap-4 overflow-x-auto py-4 scrollbar-hide">
                                         {outOfStockItems.map((product) => (
                                             <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group opacity-60 flex-shrink-0">
                                                 <div className="relative">
