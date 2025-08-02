@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
 import {
   AlignJustify,
   Search,
@@ -9,6 +10,7 @@ import {
 } from 'lucide-react';
 
 function NavBar() {
+  const { getCartCount } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
 
@@ -36,7 +38,14 @@ function NavBar() {
         </div>
         <div className="flex items-center gap-3">
           <Search />
-          <ShoppingCart />
+          <Link to="/cart" className="relative">
+            <ShoppingCart />
+            {getCartCount() > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {getCartCount()}
+              </span>
+            )}
+          </Link>
           <CircleUserRound />
         </div>
       </div>
@@ -134,7 +143,14 @@ function NavBar() {
 
         {/* Right */}
         <div className="flex items-center gap-4">
-          <ShoppingCart className="h-7 w-7 cursor-pointer" />
+          <Link to="/cart" className="relative">
+            <ShoppingCart className="h-7 w-7 cursor-pointer" />
+            {getCartCount() > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {getCartCount()}
+              </span>
+            )}
+          </Link>
           <CircleUserRound className="h-7 w-7 cursor-pointer" />
         </div>
       </div>
