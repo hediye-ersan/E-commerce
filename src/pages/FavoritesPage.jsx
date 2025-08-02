@@ -38,6 +38,39 @@ const FavoritesPage = () => {
             rating: 4.8,
             inStock: true
         },
+        ,
+        {
+            id: 2,
+            name: "Gradient Graphic T-shirt",
+            price: 145,
+            originalPrice: 180,
+            discount: 15,
+            image: "https://picsum.photos/300/301",
+            rating: 4.8,
+            inStock: true
+        },
+        ,
+        {
+            id: 2,
+            name: "Gradient Graphic T-shirt",
+            price: 145,
+            originalPrice: 180,
+            discount: 15,
+            image: "https://picsum.photos/300/301",
+            rating: 4.8,
+            inStock: true
+        },
+        ,
+        {
+            id: 2,
+            name: "Gradient Graphic T-shirt",
+            price: 145,
+            originalPrice: 180,
+            discount: 15,
+            image: "https://picsum.photos/300/301",
+            rating: 4.8,
+            inStock: true
+        },
         {
             id: 3,
             name: "Checkered Shirt",
@@ -127,12 +160,12 @@ const FavoritesPage = () => {
                                     </h2>
                                     <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
                                         {inStockItems.map((product) => (
-                                            <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-all duration-300 flex-shrink-0 w-64">
+                                            <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-all duration-300 flex-shrink-0">
                                                 <div className="relative">
                                                     <img
                                                         src={product.image}
                                                         alt={product.name}
-                                                        className="w-full h-32 sm:h-36 md:h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                                                        className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
                                                     />
                                                     <button
                                                         onClick={() => removeFromFavorites(product.id)}
@@ -201,7 +234,7 @@ const FavoritesPage = () => {
                                     </h2>
                                     <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
                                         {outOfStockItems.map((product) => (
-                                            <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group opacity-60 flex-shrink-0 w-64">
+                                            <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group opacity-60 flex-shrink-0">
                                                 <div className="relative">
                                                     <img
                                                         src={product.image}
@@ -259,7 +292,7 @@ const FavoritesPage = () => {
                             )}
 
                             {/* Favorites Summary - Always at bottom */}
-                            <div className="mt-8">
+                            <div className="mt-8 md:max-w-md mx-auto">
                                 <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                                     <div className="flex items-center gap-3 mb-6">
                                         <Heart className="text-red-500" size={24} />
@@ -267,7 +300,7 @@ const FavoritesPage = () => {
                                             Favorites Summary
                                         </h3>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                    <div className="grid grid-cols-1  gap-4 mb-6">
                                         <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                                             <span className="text-gray-700 font-medium">Total Items</span>
                                             <span className="font-bold text-lg">{favorites.length}</span>
@@ -281,7 +314,7 @@ const FavoritesPage = () => {
                                             <span className="font-bold text-lg text-red-600">{outOfStockItems.length}</span>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="border-t border-gray-200 pt-6">
                                         <button
                                             onClick={() => {
