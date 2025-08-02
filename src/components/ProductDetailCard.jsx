@@ -1,6 +1,7 @@
 import { ChevronRight, Star, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
 
 const Button2 = ({ children, className, onClick }) => (
     <button
@@ -20,10 +21,11 @@ const colors = [
 const sizes = ["Small", "Medium", "Large", "X-Large"];
 
 const ProductDetailCard = () => {
-
+    const { addToCart } = useCart();
     const [selectedColor, setSelectedColor] = useState(colors[0].name);
     const [selectedSize, setSelectedSize] = useState("Large");
     const [quantity, setQuantity] = useState(1);
+    const [isAddingToCart, setIsAddingToCart] = useState(false);
 
     return (
         <div className="p-4 md:px-24 md:py-8 max-w-auto mx-auto font-inter">
@@ -138,7 +140,29 @@ const ProductDetailCard = () => {
                                 <Plus size={18} className="text-gray-700" />
                             </button>
                         </div>
-                        <Button2 className="flex-grow px-8 py-3 text-lg">Add to Cart</Button2>
+                        <Button2 
+                            className="flex-grow px-8 py-3 text-lg"
+                            onClick={() => {
+                                setIsAddingToCart(true);
+                                const product = {
+                                    id: Date.now(), // Unique ID for demo
+                                    name: "ONE LIFE GRAPHIC T-SHIRT",
+                                    price: 260,
+                                    size: selectedSize,
+                                    color: selectedColor,
+                                    quantity: quantity,
+                                    image: "https://placehold.co/400x400/E0E0E0/333333?text=Main+Product"
+                                };
+                                addToCart(product);
+                                
+                                // Show success feedback
+                                setTimeout(() => {
+                                    setIsAddingToCart(false);
+                                }, 1000);
+                            }}
+                        >
+                            {isAddingToCart ? "Added to Cart!" : "Add to Cart"}
+                        </Button2>
                     </div>
                 </div>
             </div>
