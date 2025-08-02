@@ -46,63 +46,63 @@ const Cart = () => {
     return (
         <>
         <NavBar />
-        <div className="min-h-screen bg-gradient-to-br to-white">
-            <div className="max-w-6xl mx-auto px-4 py-8">
+        <div>
+            <div className=" mx-auto px-4 md:px-24 pt-4 md:pt-8">
                 {/* Breadcrumb */}
-                <div className="text-sm text-gray-600 flex items-center gap-1 mb-6">
+                <div className="text-sm text-gray-600 flex items-center gap-1 mb-6 md:mb-8">
                     <Link to="/" className="hover:underline">Home</Link>
                     <ChevronRight size={16} />
                     <span>Cart</span>
                 </div>
 
                 {/* Page Title */}
-                <h1 className="text-3xl font-bold py-4">YOUR CART</h1>
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 md:mb-12 py-4 md:py-8">YOUR CART</h1>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="flex flex-col lg:flex-row gap-6 md:gap-24">
                     {/* Cart Items */}
-                    <div className="lg:col-span-2">
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+                    <div className="flex-1">
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
                             {displayItems.map((item) => (
-                                <div key={item.id} className="flex items-start gap-4 py-6 border-b border-gray-100 last:border-b-0">
+                                <div key={item.id} className="flex items-start gap-4 md:gap-6 py-6 md:py-8 border-b border-gray-100 last:border-b-0">
                                     {/* Product Image */}
                                     <div className="flex-shrink-0">
                                         <img
                                             src={item.image}
                                             alt={item.name}
-                                            className="w-20 h-20 rounded-lg object-cover border border-gray-200"
+                                            className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover border border-gray-200"
                                         />
                                     </div>
 
                                     {/* Product Details */}
                                     <div className="flex-grow">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <h3 className="font-semibold text-gray-900">{item.name}</h3>
+                                        <div className="flex justify-between items-start mb-2 md:mb-3">
+                                            <h3 className="font-semibold text-gray-900 text-base md:text-lg">{item.name}</h3>
                                             <button
                                                 onClick={() => removeFromCart(item.id)}
-                                                className="text-red-500 hover:text-red-700 transition-colors"
+                                                className="text-red-500 hover:text-red-700 transition-colors p-1"
                                             >
                                                 <Trash2 size={18} />
                                             </button>
                                         </div>
                                         
-                                        <div className="text-sm text-gray-600 mb-2">
+                                        <div className="text-sm text-gray-600 mb-3 md:mb-4">
                                             <span>Size: {item.size}</span>
                                             <span className="mx-2">•</span>
                                             <span>Color: {item.color}</span>
                                         </div>
                                         
                                         <div className="flex justify-between items-center">
-                                            <span className="font-semibold text-lg text-gray-900">${item.price}</span>
+                                            <span className="font-semibold text-lg md:text-xl text-gray-900">${item.price}</span>
                                             
                                             {/* Quantity Controls */}
-                                            <div className="flex items-center border border-gray-300 rounded-full px-3 py-1 gap-3">
+                                            <div className="flex items-center border border-gray-300 rounded-full px-3 py-2 gap-3">
                                                 <button
                                                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
                                                     className="p-1 rounded-full hover:bg-gray-100 transition-colors"
                                                 >
                                                     <Minus size={16} className="text-gray-700" />
                                                 </button>
-                                                <span className="font-semibold text-gray-900 min-w-[20px] text-center">
+                                                <span className="font-semibold text-gray-900 min-w-[24px] text-center">
                                                     {item.quantity}
                                                 </span>
                                                 <button
@@ -120,53 +120,53 @@ const Cart = () => {
                     </div>
 
                     {/* Order Summary */}
-                    <div className="lg:col-span-1">
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 sticky top-8">
-                            <h2 className="text-xl font-semibold text-gray-900 mb-6 py-2">Order Summary</h2>
+                    <div className="lg:w-96">
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8 sticky top-8">
+                            <h2 className="text-2xl md:text-2xl font-semibold text-gray-900 mb-6 md:mb-8">Order Summary</h2>
                             
-                            <div className="space-y-3 mb-6 ">
+                            <div className="space-y-4 md:space-y-5 mb-6 md:mb-8">
                                 <div className="flex justify-between text-gray-700 py-2">
-                                    <span>Subtotal</span>
-                                    <span>${totals.subtotal}</span>
+                                    <span className="text-base md:text-lg">Subtotal</span>
+                                    <span className="text-base md:text-lg font-medium">${totals.subtotal}</span>
                                 </div>
                                 <div className="flex justify-between text-red-600 py-2">
-                                    <span>Discount (-20%)</span>
-                                    <span>-${totals.discount}</span>
+                                    <span className="text-base md:text-lg">Discount (-20%)</span>
+                                    <span className="text-base md:text-lg font-medium">-${totals.discount}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-700 py-2">
-                                    <span>Delivery Fee</span>
-                                    <span>${totals.deliveryFee}</span>
+                                    <span className="text-base md:text-lg">Delivery Fee</span>
+                                    <span className="text-base md:text-lg font-medium">${totals.deliveryFee}</span>
                                 </div>
                             </div>
                             
-                            <div className="border-t border-gray-200 pt-4 mb-6 py-6">
-                                <div className="flex justify-between text-xl font-bold text-gray-900">
+                            <div className="border-t border-gray-200 pt-4 md:pt-6 mb-6 md:mb-8">
+                                <div className="flex justify-between text-xl md:text-2xl font-bold text-gray-900">
                                     <span>Total</span>
                                     <span>${totals.total}</span>
                                 </div>
                             </div>
 
                             {/* Promo Code */}
-                            <div className="flex gap-2 mb-6">
+                            <div className="flex gap-2 pt-4 md:pt-6">
                                 <div className="flex-1 relative">
                                     <Tag size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                     <input
                                         type="text"
                                         placeholder="Add promo code"
-                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                                        className="w-full pl-10 pr-4 py-3 md:py-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent text-base"
                                     />
                                 </div>
-                                <button className="bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+                                <button className="bg-black text-white px-6 py-3 md:py-4 rounded-full font-medium hover:bg-gray-800 transition-colors text-base">
                                     Apply
                                 </button>
                             </div>
 
                             {/* Checkout Button */}
                             <div className="pt-6">
-                            <Button2 className="flex items-center justify-center gap-2">
-                                Go to Checkout
-                                <ArrowRight size={20} />
-                            </Button2>
+                                <Button2 className="w-full flex items-center justify-center gap-2 py-4 md:py-5 text-lg md:text-xl">
+                                    Go to Checkout
+                                    <ArrowRight size={20} />
+                                </Button2>
                             </div>
                         </div>
                     </div>
