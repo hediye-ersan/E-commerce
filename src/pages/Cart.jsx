@@ -1,6 +1,9 @@
 import { ChevronRight, Trash2, Minus, Plus, Tag, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
+import NavBar from "../components/Navbar";
+import Button2 from "../components/ui/Button2";
+import Footer from "../components/Footer";
 
 const Cart = () => {
     const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
@@ -41,7 +44,9 @@ const Cart = () => {
     const totals = getCartTotal();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white">
+        <>
+        <NavBar />
+        <div className="min-h-screen bg-gradient-to-br to-white">
             <div className="max-w-6xl mx-auto px-4 py-8">
                 {/* Breadcrumb */}
                 <div className="text-sm text-gray-600 flex items-center gap-1 mb-6">
@@ -51,7 +56,7 @@ const Cart = () => {
                 </div>
 
                 {/* Page Title */}
-                <h1 className="text-4xl font-bold text-gray-900 mb-8">YOUR CART</h1>
+                <h1 className="text-3xl font-bold py-4">YOUR CART</h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Cart Items */}
@@ -117,24 +122,24 @@ const Cart = () => {
                     {/* Order Summary */}
                     <div className="lg:col-span-1">
                         <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 sticky top-8">
-                            <h2 className="text-xl font-semibold text-gray-900 mb-6">Order Summary</h2>
+                            <h2 className="text-xl font-semibold text-gray-900 mb-6 py-2">Order Summary</h2>
                             
-                            <div className="space-y-3 mb-6">
-                                <div className="flex justify-between text-gray-700">
+                            <div className="space-y-3 mb-6 ">
+                                <div className="flex justify-between text-gray-700 py-2">
                                     <span>Subtotal</span>
                                     <span>${totals.subtotal}</span>
                                 </div>
-                                <div className="flex justify-between text-red-600">
+                                <div className="flex justify-between text-red-600 py-2">
                                     <span>Discount (-20%)</span>
                                     <span>-${totals.discount}</span>
                                 </div>
-                                <div className="flex justify-between text-gray-700">
+                                <div className="flex justify-between text-gray-700 py-2">
                                     <span>Delivery Fee</span>
                                     <span>${totals.deliveryFee}</span>
                                 </div>
                             </div>
                             
-                            <div className="border-t border-gray-200 pt-4 mb-6">
+                            <div className="border-t border-gray-200 pt-4 mb-6 py-6">
                                 <div className="flex justify-between text-xl font-bold text-gray-900">
                                     <span>Total</span>
                                     <span>${totals.total}</span>
@@ -157,15 +162,19 @@ const Cart = () => {
                             </div>
 
                             {/* Checkout Button */}
-                            <button className="w-full bg-black text-white py-4 rounded-full font-semibold text-lg hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                            <div className="pt-6">
+                            <Button2 className="flex items-center justify-center gap-2">
                                 Go to Checkout
                                 <ArrowRight size={20} />
-                            </button>
+                            </Button2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <Footer />
+        </>
     );
 };
 
