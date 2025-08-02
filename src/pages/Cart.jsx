@@ -4,9 +4,12 @@ import { useCart } from "../contexts/CartContext";
 import NavBar from "../components/Navbar";
 import Button2 from "../components/ui/Button2";
 import Footer from "../components/Footer";
+import CheckoutModal from "../components/CheckoutModal";
+import { useState } from "react";
 
 const Cart = () => {
     const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
+    const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
 
     // Sample cart items for demonstration
     const sampleItems = [
@@ -163,7 +166,10 @@ const Cart = () => {
 
                             {/* Checkout Button */}
                             <div className="pt-6">
-                                <Button2 className="w-full flex items-center justify-center gap-2 py-4 md:py-5 text-lg md:text-xl">
+                                <Button2 
+                                    className="w-full flex items-center justify-center gap-2 py-4 md:py-5 text-lg md:text-xl"
+                                    onClick={() => setIsCheckoutModalOpen(true)}
+                                >
                                     Go to Checkout
                                     <ArrowRight size={20} />
                                 </Button2>
@@ -174,6 +180,12 @@ const Cart = () => {
             </div>
         </div>
         <Footer />
+        
+        {/* Checkout Modal */}
+        <CheckoutModal 
+            isOpen={isCheckoutModalOpen}
+            onClose={() => setIsCheckoutModalOpen(false)}
+        />
         </>
     );
 };
