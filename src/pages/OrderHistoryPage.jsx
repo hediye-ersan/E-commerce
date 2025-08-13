@@ -1,7 +1,8 @@
 import React from 'react';
 import { useOrderHistory } from '../contexts/OrderHistoryContext';
 import { Link } from 'react-router-dom';
-import { useMemo } from 'react';
+import NavBar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const OrderHistoryPage = () => {
     const { orders, loading, error, filter, setFilter, searchQuery, setSearchQuery } = useOrderHistory();
@@ -40,6 +41,8 @@ const OrderHistoryPage = () => {
     }
 
     return (
+        <>
+        <NavBar/>
         <div className="mx-auto px-4 md:px-24 pt-2 md:pt-4">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 md:mb-12 py-4 md:py-8 uppercase">Order History</h1>
 
@@ -116,6 +119,8 @@ const OrderHistoryPage = () => {
                 ))}
             </div>
         </div>
+        <Footer/>
+        </>
     );
 };
 
