@@ -8,8 +8,8 @@ const CheckoutModal = ({ isOpen, onClose }) => {
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('card');
     const [selectedAddress, setSelectedAddress] = useState(1);
     const [selectedCard, setSelectedCard] = useState(1);
-    const [showNewCardForm, setShowNewCardForm] = useState(false);
-    const [showNewAddressForm, setShowNewAddressForm] = useState(false);
+    const [showNewCardForm, setShowNewCardForm] = useState(false); // Şu an kullanılmıyor ama form eklenebilir
+    const [showNewAddressForm, setShowNewAddressForm] = useState(false); // Şu an kullanılmıyor ama form eklenebilir
 
     const totals = getCartTotal();
 
@@ -88,6 +88,7 @@ const CheckoutModal = ({ isOpen, onClose }) => {
                     <button
                         onClick={onClose}
                         className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                        aria-label="Close checkout"
                     >
                         <X size={24} />
                     </button>
@@ -156,10 +157,10 @@ const CheckoutModal = ({ isOpen, onClose }) => {
                                                     </p>
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <button className="p-1 hover:bg-gray-100 rounded">
+                                                    <button className="p-1 hover:bg-gray-100 rounded" aria-label="Edit address">
                                                         <Edit size={16} />
                                                     </button>
-                                                    <button className="p-1 hover:bg-gray-100 rounded text-red-500">
+                                                    <button className="p-1 hover:bg-gray-100 rounded text-red-500" aria-label="Delete address">
                                                         <Trash2 size={16} />
                                                     </button>
                                                 </div>
@@ -256,7 +257,7 @@ const CheckoutModal = ({ isOpen, onClose }) => {
                                                                     Default
                                                                 </span>
                                                             )}
-                                                            <button className="p-1 hover:bg-gray-100 rounded text-red-500">
+                                                            <button className="p-1 hover:bg-gray-100 rounded text-red-500" aria-label="Delete card">
                                                                 <Trash2 size={16} />
                                                             </button>
                                                         </div>
@@ -302,7 +303,7 @@ const CheckoutModal = ({ isOpen, onClose }) => {
                                     <div className="border-t border-gray-100 mt-3 pt-3">
                                         <div className="flex justify-between font-medium">
                                             <span>Total</span>
-                                            <span>${totals.total}</span>
+                                            <span>${totals.total.toFixed(2)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -373,7 +374,7 @@ const CheckoutModal = ({ isOpen, onClose }) => {
                                         </p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="font-medium">${item.price}</p>
+                                        <p className="font-medium">${item.price.toFixed(2)}</p>
                                         <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                                     </div>
                                 </div>
@@ -384,20 +385,20 @@ const CheckoutModal = ({ isOpen, onClose }) => {
                         <div className="border-t border-gray-200 pt-4 space-y-2">
                             <div className="flex justify-between text-sm">
                                 <span>Subtotal</span>
-                                <span>${totals.subtotal}</span>
+                                <span>${totals.subtotal.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between text-sm text-red-600">
-                                <span>Discount (-20%)</span>
-                                <span>-${totals.discount}</span>
+                                <span>Discount (-{(DISCOUNT_RATE * 100).toFixed(0)}%)</span>
+                                <span>-${totals.discount.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between text-sm">
                                 <span>Delivery Fee</span>
-                                <span>${totals.deliveryFee}</span>
+                                <span>${totals.deliveryFee.toFixed(2)}</span>
                             </div>
                             <div className="border-t border-gray-200 pt-2">
                                 <div className="flex justify-between font-semibold">
                                     <span>Total</span>
-                                    <span>${totals.total}</span>
+                                    <span>${totals.total.toFixed(2)}</span>
                                 </div>
                             </div>
                         </div>
@@ -420,4 +421,4 @@ const CheckoutModal = ({ isOpen, onClose }) => {
     );
 };
 
-export default CheckoutModal; 
+export default CheckoutModal;
