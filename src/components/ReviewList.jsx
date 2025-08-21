@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react"; // Added useEffect for window resize listener
-import { Star, SlidersHorizontal, MoreHorizontal } from "lucide-react";
+import React, { useState } from "react";
+import { SlidersHorizontal, MoreHorizontal } from "lucide-react";
+import StarRating from "./ui/StarRating"; // StarRating bileşeni eklendi
+import useMediaQuery from "../hooks/useMediaQuery"; // Yeni hook eklendi
 
 const initialReviews = [
     {
@@ -60,41 +62,13 @@ const VerifiedIcon = () => (
     </span>
 );
 
-const StarRating = ({ rating }) => {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-
-    return (
-        <div className="flex text-yellow-500 mb-2">
-            {[...Array(fullStars)].map((_, i) => (
-                <Star key={`full-${i}`} size={16} fill="currentColor" />
-            ))}
-            {halfStar && <Star key="half" size={16} fill="currentColor" className="text-yellow-500 half-star" />}
-            {[...Array(emptyStars)].map((_, i) => (
-                <Star key={`empty-${i}`} size={16} stroke="currentColor" fill="none" />
-            ))}
-        </div>
-    );
-};
-
 const ReviewList = () => {
     const [showForm, setShowForm] = useState(false);
     const [form, setForm] = useState({ name: "", rating: "", text: "" });
     const [reviews, setReviews] = useState(initialReviews);
     const [showAllReviews, setShowAllReviews] = useState(false);
     const [submissionMessage, setSubmissionMessage] = useState("");
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // State to track mobile view
-
-    // Effect to update isMobile state on window resize
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const isMobile = useMediaQuery('(max-width: 767px)'); // md breakpoint
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -111,22 +85,19 @@ const ReviewList = () => {
         setTimeout(() => setSubmissionMessage(""), 3000);
     };
 
-    // Determine which reviews to display based on screen size and showAllReviews state
     const getReviewsToDisplay = () => {
         if (showAllReviews) {
             return reviews;
         } else {
             if (isMobile) {
-                return reviews.slice(0, 3); // Show first 3 reviews on mobile
+                return reviews.slice(0, 3);
             } else {
-                return reviews.slice(0, 6); // Show first 6 reviews on desktop
+                return reviews.slice(0, 6);
             }
         }
     };
 
     const displayedReviews = getReviewsToDisplay();
-
-    // Determine if the "Load More Reviews" button should be shown
     const shouldShowLoadMore = !showAllReviews && reviews.length > displayedReviews.length;
 
     return (
