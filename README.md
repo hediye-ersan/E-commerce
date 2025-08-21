@@ -1,12 +1,51 @@
-# React + Vite
+## 🛍️ E-Ticaret Frontend Projesi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📋 Proje Özeti
+React tabanlı modern e-ticaret uygulaması. Kullanıcı dostu arayüz, responsive tasarım ve güçlü state yönetimi ile öne çıkar.
 
-Currently, two official plugins are available:
+## 🚀 Özellikler
+✔️ Ürün listeleme ve filtreleme
+✔️ Kullanıcı giriş/kayıt sistemi
+✔️ Sepet yönetimi
+✔️ Sipariş takibi
+✔️ Favori ürünler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 💻 Teknolojiler
+{
+  "react": "^18.2.0",
+  "react-router-dom": "^5.3.4",
+  "tailwindcss": "^3.3.3",
+  "lucide-react": "^0.300.0",
+  "react-icons": "^4.10.1"
+}
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## ⚙️ Kurulum
+Gereksinimler:
+   - Node.js (v16+)
+   - npm (v8+)
+
+Bağımlılıkları Yükleyin:
+   bash    npm install    
+
+Geliştirme Sunucusunu Başlatın:
+   bash    npm start    
+
+Production Build:
+   bash    npm run build    
+
+
+## 🌐 Canlı Demo
+Proje Linki [[https://e-commerce-git-main-hediyes-projects.vercel.app/]]
+
+## 🤝 Katkı
+Katkılarınız için teşekkürler! Katkıda bulunmak için:
+
+Repoyu fork'layın
+
+Yeni branch oluşturun
+
+Değişikliklerinizi yapın
+
+Pull request gönderin
