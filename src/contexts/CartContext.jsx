@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { DISCOUNT_RATE, DELIVERY_FEE } from '../utils/constants'; // Sabitler eklendi
 
 const CartContext = createContext();
 
@@ -15,16 +16,16 @@ export const CartProvider = ({ children }) => {
 
     const addToCart = (product) => {
         setCartItems(prevItems => {
-            const existingItem = prevItems.find(item => 
-                item.id === product.id && 
-                item.size === product.size && 
+            const existingItem = prevItems.find(item =>
+                item.id === product.id &&
+                item.size === product.size &&
                 item.color === product.color
             );
 
             if (existingItem) {
                 return prevItems.map(item =>
-                    item.id === product.id && 
-                    item.size === product.size && 
+                    item.id === product.id &&
+                    item.size === product.size &&
                     item.color === product.color
                         ? { ...item, quantity: item.quantity + product.quantity }
                         : item
@@ -44,7 +45,7 @@ export const CartProvider = ({ children }) => {
             removeFromCart(itemId);
             return;
         }
-        
+
         setCartItems(prevItems =>
             prevItems.map(item =>
                 item.id === itemId
@@ -56,8 +57,8 @@ export const CartProvider = ({ children }) => {
 
     const getCartTotal = () => {
         const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-        const discount = subtotal * 0.2; // 20% discount
-        const deliveryFee = 15;
+        const discount = subtotal * DISCOUNT_RATE; // Sabit kullanıldı
+        const deliveryFee = DELIVERY_FEE; // Sabit kullanıldı
         return {
             subtotal,
             discount,
@@ -76,7 +77,8 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         getCartTotal,
-        getCartCount
+        getCartCount,
+        setCartItems // Sepeti boşaltmak için eklendi
     };
 
     return (
@@ -84,4 +86,4 @@ export const CartProvider = ({ children }) => {
             {children}
         </CartContext.Provider>
     );
-}; 
+};
