@@ -1,84 +1,11 @@
-import { Star } from "lucide-react"
-import { useEffect, useState } from "react"
-import Button from "../components/ui/Button"
-
-const products = [
-  {
-    id: 1,
-    title: "T-shirt with Tape Details",
-    price: 120,
-    rating: 4.5,
-    image: "https://picsum.photos/200/250",
-    oldPrice: null,
-    discount: null,
-  },
-  {
-    id: 2,
-    title: "Skinny Fit Jeans",
-    price: 240,
-    rating: 3.5,
-    image: "https://picsum.photos/200/250",
-    oldPrice: 260,
-    discount: "-20%",
-  },
-  {
-    id: 3,
-    title: "Oversized Hoodie",
-    price: 180,
-    rating: 4,
-    image: "https://picsum.photos/200/250",
-    oldPrice: null,
-    discount: null,
-  },
-  {
-    id: 4,
-    title: "Leather Jacket",
-    price: 350,
-    rating: 4.8,
-    image: "https://picsum.photos/200/250",
-    oldPrice: 400,
-    discount: "-12%",
-  },
-  {
-    id: 5,
-    title: "Casual Shorts",
-    price: 90,
-    rating: 4.2,
-    image: "https://picsum.photos/200/250",
-    oldPrice: null,
-    discount: null,
-  },
-]
-
-const renderStars = (rating) => {
-  const fullStars = Math.floor(rating)
-  const halfStar = rating % 1 >= 0.5
-  const stars = []
-
-  for (let i = 0; i < fullStars; i++) {
-    stars.push(<Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)
-  }
-
-  if (halfStar) {
-    stars.push(<Star key="half" className="w-4 h-4 text-yellow-400 fill-yellow-400 opacity-50" />)
-  }
-
-  return stars
-}
+import Button from "../components/ui/Button";
+import useMediaQuery from "../hooks/useMediaQuery"; // Yeni hook eklendi
+import { newArrivalsProducts, renderStars } from "../utils/productUtils"; // Ürünler ve renderStars taşındı
 
 export default function NewArrivals() {
-  const [isMobile, setIsMobile] = useState(false)
+  const isMobile = useMediaQuery('(max-width: 1023px)'); // lg breakpoint
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024) // lg breakpoint
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
-  const visibleProducts = isMobile ? products.slice(0, 2) : products
+  const visibleProducts = isMobile ? newArrivalsProducts.slice(0, 2) : newArrivalsProducts;
 
   return (
     <div className="w-full flex justify-center">
