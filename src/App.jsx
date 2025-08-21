@@ -1,4 +1,3 @@
-
 import './reset.css'
 import { Route } from 'react-router-dom';
 import { Switch } from 'react-router';
@@ -10,21 +9,24 @@ import FavoritesPage from './pages/FavoritesPage.jsx';
 import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
 import { CartProvider } from './contexts/CartContext';
 import { OrderHistoryProvider } from './contexts/OrderHistoryContext';
+import { AuthProvider } from './contexts/AuthContext'; // AuthProvider eklendi
 
 function App() {
   return (
-    <CartProvider>
-      <OrderHistoryProvider>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/category/:category" component={CategoryPage} />
-          <Route path="/product/:id" component={ProductDetailPage} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/favorites" component={FavoritesPage} />
-          <Route path="/orders" component={OrderHistoryPage} />
-        </Switch>
-      </OrderHistoryProvider>
-    </CartProvider>
+    <AuthProvider> {/* AuthProvider eklendi */}
+      <CartProvider>
+        <OrderHistoryProvider>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/category/:category" component={CategoryPage} />
+            <Route path="/product/:id" component={ProductDetailPage} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/favorites" component={FavoritesPage} />
+            <Route path="/orders" component={OrderHistoryPage} />
+          </Switch>
+        </OrderHistoryProvider>
+      </CartProvider>
+    </AuthProvider>
   )
 }
 export default App
