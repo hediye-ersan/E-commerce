@@ -37,7 +37,7 @@ Production Build:
 
 
 ## 🌐 Canlı Demo
-Proje Linki [[https://e-commerce-git-main-hediyes-projects.vercel.app/]]
+Proje Linki [[https://e-commerce-drab-six-ds21nudubw.vercel.app/]]
 
 ## 🤝 Katkı
 Katkılarınız için teşekkürler! Katkıda bulunmak için:
