@@ -118,75 +118,15 @@ const NavBar = () => {
           
           <div className="relative" ref={userMenuRef}>
             <button
-              onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+              onClick={() => {
+                setIsAuthModalOpen(true); // Modal açılmasını sağlayan kod
+                setIsUserMenuOpen(false); // Kullanıcı menüsünü kapat
+              }}
               className="p-1 hover:bg-gray-100 rounded-full transition-colors"
               aria-label="User menu"
             >
               <UserIcon size={24} />
             </button>
-
-            {/* User Dropdown Menu */}
-            {isUserMenuOpen && (
-              <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                {isLoggedIn ? (
-                  <>
-                    <div className="px-4 py-3 border-b border-gray-200">
-                      <p className="font-medium text-gray-900 truncate">{user?.name || 'User'}</p>
-                      <p className="text-xs text-gray-500 truncate">{user?.email}</p>
-                    </div>
-                    
-                    <Link
-                      to="/favorites"
-                      onClick={() => setIsUserMenuOpen(false)}
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                    >
-                      <Heart size={16} className="mr-3" />
-                      Favorites
-                    </Link>
-                    
-                    <Link
-                      to="/orders"
-                      onClick={() => setIsUserMenuOpen(false)}
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                    >
-                      <FileText size={16} className="mr-3" />
-                      Orders
-                    </Link>
-                    
-                    <Link
-                      to="/account"
-                      onClick={() => setIsUserMenuOpen(false)}
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                    >
-                      <Settings size={16} className="mr-3" />
-                      Account Settings
-                    </Link>
-                    
-                    <div className="border-t border-gray-200"></div>
-                    <button
-                      onClick={handleLogout}
-                      className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
-                    >
-                      <LogOut size={16} className="mr-3" />
-                      Sign Out
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      onClick={() => {
-                        setIsAuthModalOpen(true);
-                        setIsUserMenuOpen(false);
-                      }}
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                    >
-                      <UserIcon size={16} className="mr-3" />
-                      Sign In / Register
-                    </button>
-                  </>
-                )}
-              </div>
-            )}
           </div>
         </div>
       </div>
