@@ -29,7 +29,6 @@ const NavBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const userMenuRef = useRef(null);
-  const mobileMenuRef = useRef(null);
 
   const navigationItems = [
     { label: "Shop", submenu: ["Men", "Women"] },
@@ -38,7 +37,7 @@ const NavBar = () => {
     { label: "Brands" },
   ];
 
-  // Close dropdowns when clicking outside
+  // Close user dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -46,12 +45,6 @@ const NavBar = () => {
         !userMenuRef.current.contains(event.target)
       ) {
         setIsUserMenuOpen(false);
-      }
-      if (
-        mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(event.target)
-      ) {
-        setIsMobileMenuOpen(false);
       }
     };
 
@@ -89,10 +82,7 @@ const NavBar = () => {
       </div>
 
       {/* Mobile Navbar */}
-      <div
-        className="flex items-center justify-between lg:hidden p-4"
-        ref={mobileMenuRef}
-      >
+      <div className="flex items-center justify-between lg:hidden p-4">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -124,17 +114,83 @@ const NavBar = () => {
             )}
           </Link>
 
+          {/* User Menu */}
           <div className="relative" ref={userMenuRef}>
             <button
               onClick={() => {
-                setIsAuthModalOpen(true);
-                setIsUserMenuOpen(false);
+                if (isLoggedIn) {
+                  setIsUserMenuOpen(!isUserMenuOpen);
+                } else {
+                  setIsAuthModalOpen(true);
+                }
               }}
               className="p-1 hover:bg-gray-100 rounded-full transition-colors"
               aria-label="User menu"
             >
               <UserIcon size={24} />
             </button>
+
+            {isUserMenuOpen && (
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                {isLoggedIn ? (
+                  <>
+                    <div className="px-4 py-3 border-b border-gray-200">
+                      <p className="font-medium text-gray-900 truncate">
+                        {user?.name || "User"}
+                      </p>
+                      <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+                    </div>
+
+                    <Link
+                      to="/favorites"
+                      onClick={() => setIsUserMenuOpen(false)}
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <Heart size={16} className="mr-3" />
+                      Favorites
+                    </Link>
+
+                    <Link
+                      to="/orders"
+                      onClick={() => setIsUserMenuOpen(false)}
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <FileText size={16} className="mr-3" />
+                      Orders
+                    </Link>
+
+                    <Link
+                      to="/account"
+                      onClick={() => setIsUserMenuOpen(false)}
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <Settings size={16} className="mr-3" />
+                      Account Settings
+                    </Link>
+
+                    <div className="border-t border-gray-200"></div>
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                    >
+                      <LogOut size={16} className="mr-3" />
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setIsAuthModalOpen(true);
+                      setIsUserMenuOpen(false);
+                    }}
+                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                  >
+                    <UserIcon size={16} className="mr-3" />
+                    Sign In / Register
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -229,9 +285,8 @@ const NavBar = () => {
                       {item.label}
                       <ChevronDown
                         size={16}
-                        className={`transition-transform ${
-                          isShopOpen ? "rotate-180" : ""
-                        }`}
+                        className={`transition-transform ${isShopOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
