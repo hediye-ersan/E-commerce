@@ -65,3 +65,5 @@ const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth }) => {
 };
 
 export default UserMenu;
+
+//TODO: UserMenu hala mobilde farklı desktopta farklı açılıyor. Bunu düzelt.
