@@ -3,24 +3,29 @@ import { Heart, FileText, Settings, LogOut, User as UserIcon } from "lucide-reac
 
 
 const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth, isMobile = false }) => {
-    
+  const handleLinkClick = (callback) => {
+    if (callback) callback(); // Örneğin, yönlendirme sonrası menüyü kapatmak için
+    onClose(); // Menüyü kapat
+  };
+
   return (
-    <div className={isMobile ? 
-      "w-full bg-white border-t border-gray-200 py-2" : 
-      "absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50"
-    }>
+    <div
+      className={
+        isMobile
+          ? "w-full bg-white border-t border-gray-200 py-2"
+          : "absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50"
+      }
+    >
       {isLoggedIn ? (
         <>
           <div className="px-4 py-3 border-b border-gray-200">
-            <p className="font-medium text-gray-900 truncate">
-              {user?.name || "User"}
-            </p>
+            <p className="font-medium text-gray-900 truncate">{user?.name || "User"}</p>
             <p className="text-xs text-gray-500 truncate">{user?.email}</p>
           </div>
 
           <Link
             to="/favorites"
-            onClick={onClose}
+            onClick={() => handleLinkClick()}
             className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
             <Heart size={16} className="mr-3" />
@@ -29,7 +34,7 @@ const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth, isMobile = fa
 
           <Link
             to="/orders"
-            onClick={onClose}
+            onClick={() => handleLinkClick()}
             className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
             <FileText size={16} className="mr-3" />
@@ -38,7 +43,7 @@ const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth, isMobile = fa
 
           <Link
             to="/account"
-            onClick={onClose}
+            onClick={() => handleLinkClick()}
             className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
             <Settings size={16} className="mr-3" />
