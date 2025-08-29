@@ -131,7 +131,6 @@ const NavBar = () => {
                   setIsAuthModalOpen(true);
                   setIsUserMenuOpen(false);
                 }}
-                isMobile={false}
               />
             )}
           </div>
