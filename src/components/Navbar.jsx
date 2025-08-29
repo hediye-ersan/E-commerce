@@ -209,7 +209,10 @@ const NavBar = () => {
               <UserMenu
                 isLoggedIn={isLoggedIn}
                 user={user}
-                onClose={() => setIsMobileMenuOpen(false)}
+                onClose={() => {
+                  setIsUserMenuOpen(false); // Kullanıcı menüsünü kapat
+                  setIsMobileMenuOpen(false); // Mobil menüyü kapat
+                }}
                 onLogout={handleLogout}
                 openAuth={() => {
                   setIsAuthModalOpen(true);
