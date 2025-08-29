@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import { Heart, FileText, Settings, LogOut, User as UserIcon } from "lucide-react";
 
 
-const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth }) => {
+const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth, isMobile = false }) => {
     
   return (
-    <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+    <div className={isMobile ? 
+      "w-full bg-white border-t border-gray-200 py-2" : 
+      "absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50"
+    }>
       {isLoggedIn ? (
         <>
           <div className="px-4 py-3 border-b border-gray-200">
@@ -65,5 +68,3 @@ const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth }) => {
 };
 
 export default UserMenu;
-
-//TODO: UserMenu hala mobilde farklı desktopta farklı açılıyor. Bunu düzelt.
