@@ -2,20 +2,21 @@ import { Link } from "react-router-dom";
 import { Heart, FileText, Settings, LogOut, User as UserIcon } from "lucide-react";
 
 
-const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth, isMobile = false }) => {
+const UserMenu = ({ isLoggedIn, user, onClose, onLogout, openAuth }) => {
   const handleLinkClick = (callback) => {
-    if (callback) callback(); // Örneğin, yönlendirme sonrası menüyü kapatmak için
-    onClose(); // Menüyü kapat
+    if (callback) {
+      callback(); // Yönlendirme işlemini başlat
+    }
+    // Yönlendirme işlemi tamamlandıktan sonra menüyü kapat
+    setTimeout(() => {
+      if (onClose) {
+        onClose();
+      }
+    }, 100); // Yönlendirme işlemini kesintiye uğratmamak için kısa bir gecikme
   };
 
   return (
-    <div
-      className={
-        isMobile
-          ? "w-full bg-white border-t border-gray-200 py-2"
-          : "absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50"
-      }
-    >
+    <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
       {isLoggedIn ? (
         <>
           <div className="px-4 py-3 border-b border-gray-200">
