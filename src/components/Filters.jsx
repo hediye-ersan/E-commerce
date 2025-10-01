@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X, ChevronRight, ChevronUp, Check } from "lucide-react";
 import Button2 from "./ui/Button2"; // Assuming you have a Button2 component
 
-export default function FilterPanel({ onClose }) {
+export default function FilterPanel({ onClose, filters, onApply }) {
   const [priceRange, setPriceRange] = useState([50, 200]);
-  const [selectedColor, setSelectedColor] = useState("blue");
-  const [selectedSize, setSelectedSize] = useState("Large");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedStyle, setSelectedStyle] = useState("");
   const [expandedSections, setExpandedSections] = useState({
     price: true,
     colors: true,
     size: true,
     dressStyle: true,
   });
+
+  useEffect(() => {
+    if (!filters) return;
+    if (Array.isArray(filters.priceRange)) setPriceRange(filters.priceRange);
+    if (typeof filters.color === "string") setSelectedColor(filters.color);
+    if (typeof filters.size === "string") setSelectedSize(filters.size);
+    if (typeof filters.style === "string") setSelectedStyle(filters.style);
+  }, [filters]);
+
+  // avoid continuous emitting via effect to prevent render loops
 
   const categories = ["T-shirts", "Shorts", "Shirts", "Hoodie", "Jeans"];
   const colors = [
@@ -98,7 +109,7 @@ export default function FilterPanel({ onClose }) {
               {colors.map((color) => (
                 <button
                   key={color.name}
-                  onClick={() => setSelectedColor(color.name)}
+                  onClick={() => setSelectedColor(color.name === selectedColor ? "" : color.name)}
                   className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? "border-black" : "border-gray-200"}`}
                   style={{ backgroundColor: color.value }}
                 >
@@ -120,7 +131,7 @@ export default function FilterPanel({ onClose }) {
               {sizes.map((size) => (
                 <button
                   key={size}
-                  onClick={() => setSelectedSize(size)}
+                  onClick={() => setSelectedSize(selectedSize === size ? "" : size)}
                   className={`px-3 py-2 text-sm rounded-full border transition-colors ${selectedSize === size ? "bg-black text-white" : "bg-gray-100 text-gray-700"}`}
                 >
                   {size}
@@ -139,10 +150,14 @@ export default function FilterPanel({ onClose }) {
           {expandedSections.dressStyle && (
             <div className="space-y-3">
               {dressStyles.map((style) => (
-                <div key={style} className="flex items-center justify-between py-2">
-                  <span className="text-gray-600">{style}</span>
+                <button
+                  key={style}
+                  onClick={() => setSelectedStyle(selectedStyle === style ? "" : style)}
+                  className={`w-full flex items-center justify-between py-2 ${selectedStyle === style ? "text-black font-medium" : "text-gray-600"}`}
+                >
+                  <span>{style}</span>
                   <ChevronRight className="h-4 w-4 text-gray-400" />
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -150,7 +165,7 @@ export default function FilterPanel({ onClose }) {
       </div>
 
       <div className="p-4">
-        <Button2>Apply Filter</Button2>
+        <Button2 onClick={() => (onApply ? onApply({ priceRange, color: selectedColor, size: selectedSize, style: selectedStyle }) : null)}>Apply Filter</Button2>
       </div>
     </div>
   );
