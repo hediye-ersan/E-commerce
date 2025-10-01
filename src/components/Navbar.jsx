@@ -25,7 +25,8 @@ const NavBar = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const userMenuRef = useRef(null);
+  const desktopUserMenuRef = useRef(null);
+  const mobileUserMenuRef = useRef(null);
   const mobileSearchRef = useRef(null);
 
   const navigationItems = [
@@ -38,10 +39,10 @@ const NavBar = () => {
   // Close user dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        userMenuRef.current &&
-        !userMenuRef.current.contains(event.target)
-      ) {
+      const target = event.target;
+      const insideDesktop = desktopUserMenuRef.current && desktopUserMenuRef.current.contains(target);
+      const insideMobile = mobileUserMenuRef.current && mobileUserMenuRef.current.contains(target);
+      if (!insideDesktop && !insideMobile) {
         setIsUserMenuOpen(false);
       }
     };
@@ -116,7 +117,7 @@ const NavBar = () => {
           </Link>
 
           {/* User Menu */}
-          <div className="relative" ref={userMenuRef}>
+          <div className="relative" ref={mobileUserMenuRef}>
             <button
               onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
               className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -209,7 +210,7 @@ const NavBar = () => {
             ))}
 
             {/* User Menu for Mobile */}
-            <div className="border-t border-gray-100 pt-3" ref={userMenuRef}>
+            <div className="border-t border-gray-100 pt-3" ref={mobileUserMenuRef}>
               <UserMenu
                 isLoggedIn={isLoggedIn}
                 user={user}
@@ -312,7 +313,7 @@ const NavBar = () => {
           </Link>
 
           {/* User Dropdown */}
-          <div className="relative" ref={userMenuRef}>
+          <div className="relative" ref={desktopUserMenuRef}>
             <button
               onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
               onMouseEnter={() => setIsUserMenuOpen(true)}
