@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { ChevronRight, SlidersHorizontal } from "lucide-react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Filters from "../components/Filters"; // Az sonra oluşturacağımız bileşen
+import { products as allProducts } from "../utils/products";
 
 function Category() {
   const location = useLocation();
@@ -10,19 +11,44 @@ function Category() {
   const category = path.charAt(0).toUpperCase() + path.slice(1);
 
   const [showFilter, setShowFilter] = useState(false);
+  const [filters, setFilters] = useState({ priceRange: [50, 200], color: "", size: "", style: "" });
+
+  const genderKey = path?.toLowerCase() || "";
+  const genderProducts = useMemo(() => allProducts.filter((p) => p.gender === genderKey), [genderKey]);
+
+  const filteredProducts = useMemo(() => {
+    return genderProducts.filter((p) => {
+      const withinPrice = p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1];
+      const matchColor = !filters.color || p.color === filters.color;
+      const matchSize = !filters.size || p.size === filters.size;
+      const matchStyle = !filters.style || p.style === filters.style;
+      return withinPrice && matchColor && matchSize && matchStyle;
+    });
+  }, [genderProducts, filters]);
 
 
   return (
     <div className="relative p-4 md:p-24 flex md:flex-row flex-col gap-4">
       {/* Filtre paneli genişletildi */}
       <div className="hidden md:block md:w-auto">
-        <Filters onClose={() => { }} />
+        <Filters
+          onClose={() => { }}
+          filters={filters}
+          onApply={(next) => setFilters((prev) => ({ ...prev, ...next }))}
+        />
       </div>
 
       {/* Mobil filtre paneli (tam ekran) */}
       {showFilter && (
         <div className="fixed md:hidden inset-0 z-50 bg-white overflow-y-auto transition-transform duration-300">
-          <Filters onClose={() => setShowFilter(false)} />
+          <Filters
+            onClose={() => setShowFilter(false)}
+            filters={filters}
+            onApply={(next) => {
+              setFilters((prev) => ({ ...prev, ...next }));
+              setShowFilter(false);
+            }}
+          />
         </div>
       )}
 
@@ -40,7 +66,7 @@ function Category() {
         {/* Başlık ve filtre butonu (mobilde görünür) */}
         <div className="flex justify-between items-center mt-4 mb-2">
           <h2 className="text-3xl font-bold">{category}</h2>
-          <span className="text-gray-500 hidden md:inline">Showing 1-10 of 100 Products</span>
+          <span className="text-gray-500 hidden md:inline">{`Showing ${filteredProducts.length} products`}</span>
           <button onClick={() => setShowFilter(true)} className="md:hidden">
             <SlidersHorizontal />
           </button>
@@ -48,8 +74,8 @@ function Category() {
 
         {/* Ürünler */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[...Array(8)].map((_, index) => (
-            <ProductCard key={index} />
+          {filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
