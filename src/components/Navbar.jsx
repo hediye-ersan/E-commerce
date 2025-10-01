@@ -26,6 +26,7 @@ const NavBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const userMenuRef = useRef(null);
+  const mobileSearchRef = useRef(null);
 
   const navigationItems = [
     { label: "Shop", submenu: ["Men", "Women"] },
@@ -95,7 +96,10 @@ const NavBar = () => {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={() => document.getElementById("mobile-search").focus()}
+            onClick={() => {
+              setIsMobileMenuOpen(true);
+              setTimeout(() => mobileSearchRef.current && mobileSearchRef.current.focus(), 0);
+            }}
             className="p-1"
             aria-label="Search"
           >
@@ -147,6 +151,7 @@ const NavBar = () => {
               placeholder="Search for products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              ref={mobileSearchRef}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-white"
             />
             <Search className="absolute left-3 top-3.5 text-gray-400" size={18} />
