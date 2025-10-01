@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { X, ChevronRight, ChevronUp, Check } from "lucide-react";
 import Button2 from "./ui/Button2"; // Assuming you have a Button2 component
+import { COLOR_OPTIONS, SIZE_OPTIONS, STYLE_OPTIONS, CATEGORIES } from "../utils/constants";
 
 export default function FilterPanel({ onClose, filters, onApply }) {
   const [priceRange, setPriceRange] = useState([50, 200]);
@@ -24,21 +25,10 @@ export default function FilterPanel({ onClose, filters, onApply }) {
 
   // avoid continuous emitting via effect to prevent render loops
 
-  const categories = ["T-shirts", "Shorts", "Shirts", "Hoodie", "Jeans"];
-  const colors = [
-    { name: "green", value: "#22c55e" },
-    { name: "red", value: "#ef4444" },
-    { name: "yellow", value: "#eab308" },
-    { name: "orange", value: "#f97316" },
-    { name: "cyan", value: "#06b6d4" },
-    { name: "blue", value: "#3b82f6" },
-    { name: "purple", value: "#a855f7" },
-    { name: "pink", value: "#ec4899" },
-    { name: "white", value: "#ffffff" },
-    { name: "black", value: "#000000" },
-  ];
-  const sizes = ["XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "3X-Large", "4X-Large"];
-  const dressStyles = ["Casual", "Formal", "Party", "Gym"];
+  const categories = CATEGORIES;
+  const colors = COLOR_OPTIONS;
+  const sizes = SIZE_OPTIONS;
+  const dressStyles = STYLE_OPTIONS;
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({ ...prev, [section]: !prev[section] }));
@@ -164,8 +154,20 @@ export default function FilterPanel({ onClose, filters, onApply }) {
         </div>
       </div>
 
-      <div className="p-4">
+      <div className="p-4 flex gap-2">
         <Button2 onClick={() => (onApply ? onApply({ priceRange, color: selectedColor, size: selectedSize, style: selectedStyle }) : null)}>Apply Filter</Button2>
+        <button
+          className="px-3 py-2 border rounded"
+          onClick={() => {
+            setPriceRange([50, 200]);
+            setSelectedColor("");
+            setSelectedSize("");
+            setSelectedStyle("");
+            onApply && onApply({ priceRange: [50, 200], color: "", size: "", style: "" });
+          }}
+        >
+          Clear
+        </button>
       </div>
     </div>
   );

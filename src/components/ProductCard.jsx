@@ -28,6 +28,8 @@ const ProductCard = ({ product }) => {
         <img
           src={currentProduct.image}
           alt={currentProduct.name}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         {/* Favorite Button */}
@@ -72,4 +74,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);
