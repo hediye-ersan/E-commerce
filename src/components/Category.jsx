@@ -16,6 +16,17 @@ function Category() {
   const genderKey = path?.toLowerCase() || "";
   const genderProducts = useMemo(() => allProducts.filter((p) => p.gender === genderKey), [genderKey]);
 
+  const priceBounds = useMemo(() => {
+    if (!genderProducts.length) return { min: 0, max: 0 };
+    let min = Number.POSITIVE_INFINITY;
+    let max = 0;
+    for (const p of genderProducts) {
+      if (p.price < min) min = p.price;
+      if (p.price > max) max = p.price;
+    }
+    return { min, max };
+  }, [genderProducts]);
+
   const filteredProducts = useMemo(() => {
     return genderProducts.filter((p) => {
       const withinPrice = p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1];
@@ -73,11 +84,15 @@ function Category() {
         </div>
 
         {/* Ürünler */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {filteredProducts.length === 0 ? (
+          <div className="py-10 text-center text-gray-500">No products found for selected filters.</div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
 
         {/* Sayfalama */}
         <div className="flex justify-between items-center pt-4">
