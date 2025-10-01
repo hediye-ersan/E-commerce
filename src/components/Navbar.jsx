@@ -46,8 +46,8 @@ const NavBar = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   const handleSearch = (e) => {
@@ -209,7 +209,7 @@ const NavBar = () => {
             ))}
 
             {/* User Menu for Mobile */}
-            <div className="border-t border-gray-100 pt-3">
+            <div className="border-t border-gray-100 pt-3" ref={userMenuRef}>
               <UserMenu
                 isLoggedIn={isLoggedIn}
                 user={user}
