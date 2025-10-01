@@ -207,8 +207,8 @@ const FavoritesPage = () => {
                                         Available Items ({inStockItems.length})
                                     </h2>
                                     <div className="flex gap-4 overflow-x-auto py-4 scrollbar-full">
-                                        {inStockItems.map((product) => (
-                                            <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-all duration-300 flex-shrink-0">
+                                        {inStockItems.map((product, index) => (
+                                            <div key={`${product.id}-${index}`} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-all duration-300 flex-shrink-0">
                                                 <div className="relative">
                                                     <img
                                                         src={product.image}
@@ -281,8 +281,8 @@ const FavoritesPage = () => {
                                         Out of Stock ({outOfStockItems.length})
                                     </h2>
                                     <div className="flex gap-4 overflow-x-auto py-4 scrollbar-hide">
-                                        {outOfStockItems.map((product) => (
-                                            <div key={product.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group opacity-60 flex-shrink-0">
+                                        {outOfStockItems.map((product, index) => (
+                                            <div key={`${product.id}-${index}`} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden group opacity-60 flex-shrink-0">
                                                 <div className="relative">
                                                     <img
                                                         src={product.image}
